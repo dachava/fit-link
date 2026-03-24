@@ -1,13 +1,14 @@
 # app/services/workout_service.py
 # every query filters by both id and user_id. 
 # This means a user can never read, edit, or delete another user's workout
-
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from fastapi import HTTPException, status
 from app.models.workout import Workout
 from app.models.exercise import Exercise
 from app.schemas.workout import WorkoutCreate, WorkoutUpdate
+
 
 
 class WorkoutService:
@@ -26,8 +27,14 @@ class WorkoutService:
             db.add(Exercise(workout_id=workout.id, **ex.model_dump()))
 
         await db.commit()
-        await db.refresh(workout)
-        return workout
+
+        # reload with exercises eagerly fetched
+        result = await db.execute(
+            select(Workout)
+            .options(selectinload(Workout.exercises))
+            .where(Workout.id == workout.id)
+        )
+        return result.scalar_one()
 
     async def list(self, db: AsyncSession, user_id: int) -> list[Workout]:
         result = await db.execute(
@@ -53,8 +60,7 @@ class WorkoutService:
             setattr(workout, field, value)
 
         await db.commit()
-        await db.refresh(workout)
-        return workout
+        return await self.get(db, user_id, workout_id)  # re-fetch with exercises loaded
 
     async def delete(self, db: AsyncSession, user_id: int, workout_id: int) -> None:
         workout = await self.get(db, user_id, workout_id)
