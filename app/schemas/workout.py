@@ -45,3 +45,12 @@ class WorkoutResponse(WorkoutBase):
     exercises: list[ExerciseResponse] = []
     created_at: datetime
     model_config = {"from_attributes": True}
+
+
+class ExerciseUpdate(BaseModel):
+    name: str | None = None
+    sets: int | None = None
+    reps: int | None = None
+    weight_kg: float | None = None
+    duration_seconds: int | None = None
+    notes: str | None = None
