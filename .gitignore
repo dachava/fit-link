@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+wheels/
+.installed.cfg
+lib/
+lib64/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables — never commit these
+.env
+.env.*
+!.env.example
+
+# Alembic — versions are committed, but not the cache
+alembic/__pycache__/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docker
+*.log
