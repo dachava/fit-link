@@ -17,8 +17,14 @@ python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 bcrypt==4.0.1
 
-# AWS
-boto3==1.35.0
-
 # HTTP client
 httpx==0.27.2
+
+# UI
+jinja2==3.1.4
+python-multipart==0.0.12
+
+# Content pipeline
+pyyaml==6.0.2
+python-frontmatter==1.1.0
+markdown==3.7

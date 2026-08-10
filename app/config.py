@@ -12,10 +12,6 @@ class Settings(BaseSettings): # These become env variables
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
-    # AWS Bedrock
-    aws_region: str = "us-east-1"
-    bedrock_model_id: str = "anthropic.claude-3-sonnet-20240229-v1:0"
-
     class Config:
         env_file = ".env"
         case_sensitive = False
