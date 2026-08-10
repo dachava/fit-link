@@ -10,6 +10,7 @@ from app.config import get_settings
 import app.models.user
 import app.models.workout
 import app.models.exercise
+import app.models.library
 
 settings = get_settings()
 config = context.config
