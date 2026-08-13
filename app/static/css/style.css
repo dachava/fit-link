@@ -1,0 +1,388 @@
+/* fit-link — single hand-written stylesheet, mobile-first */
+
+:root {
+  --bg: #121212;
+  --surface: #1c1c1c;
+  --surface-raised: #242424;
+  --border: #333;
+  --text: #f2f2f2;
+  --text-muted: #a3a3a3;
+  --accent: #ff5722;
+  --accent-text: #1a0a02;
+  --danger: #ff6b6b;
+  --radius: 14px;
+  --tap-min: 48px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  padding-bottom: 3rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.05rem; }
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+/* Header / nav */
+
+header.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header.site-header .brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+header.site-header nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+header.site-header nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+}
+
+header.site-header nav a.active,
+header.site-header nav a:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
+main {
+  padding: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Cards */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+a.card {
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+}
+
+a.card:active {
+  background: var(--surface-raised);
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.card-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Goal group headings on the index page */
+
+.goal-group {
+  margin-bottom: 2rem;
+}
+
+.goal-group h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+/* Chips: muscle / equipment / category tags */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0;
+}
+
+.chip {
+  display: inline-block;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.chip.accent {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Buttons / tap targets */
+
+.btn, button {
+  font: inherit;
+  min-height: var(--tap-min);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+/* Routine detail: blocks */
+
+.block {
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.block-header {
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.block-single .block-header {
+  display: none;
+}
+
+.block-single {
+  border: none;
+}
+
+.block-superset,
+.block-circuit {
+  border: 2px solid var(--accent);
+  background: var(--surface);
+}
+
+.block-superset .block-header,
+.block-circuit .block-header {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.block-notes {
+  padding: 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.block-exercise {
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.block-single .block-exercise {
+  border-top: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.block-exercise:first-of-type {
+  border-top: none;
+}
+
+.block-superset .block-exercise,
+.block-circuit .block-exercise {
+  border-top: 1px solid var(--border);
+}
+
+.block-exercise .exercise-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.exercise-prescription {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.exercise-prescription strong {
+  color: var(--text);
+}
+
+/* Exercise search / filter */
+
+.filter-bar {
+  position: sticky;
+  top: 61px; /* below header */
+  z-index: 9;
+  background: var(--bg);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-bar input[type="search"] {
+  width: 100%;
+  font: inherit;
+  min-height: var(--tap-min);
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-bar select {
+  font: inherit;
+  min-height: var(--tap-min);
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.equipment-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: var(--tap-min);
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.equipment-toggle input {
+  accent-color: var(--accent);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.equipment-toggle:has(input:checked) {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+#exercise-list .card {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.empty-state {
+  color: var(--text-muted);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* Exercise detail */
+
+.exercise-detail ul {
+  padding-left: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.exercise-detail li {
+  margin-bottom: 0.3rem;
+}
+
+.faults ul li {
+  color: var(--danger);
+}
+
+.faults ul li::marker {
+  color: var(--danger);
+}
+
+.markdown-body {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body :last-child {
+  margin-bottom: 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  min-height: var(--tap-min);
+  display: inline-flex;
+  align-items: center;
+}
