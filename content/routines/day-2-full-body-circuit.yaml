@@ -1,0 +1,26 @@
+slug: day-2-full-body-circuit
+name: "Day 2 — Full Body Circuit"
+description: Bodyweight circuit for conditioning, with a posterior chain finisher.
+goal: fat loss
+day_label: "Day 2 — Full Body Circuit"
+estimated_minutes: 35
+blocks:
+  - kind: circuit
+    rounds: 4
+    rest_after_seconds: 90
+    exercises:
+      - exercise: bodyweight-lunge
+        reps: "12 each leg"
+      - exercise: push-up
+        reps: "AMRAP"
+      - exercise: mountain-climbers
+        reps: "30s"
+      - exercise: plank
+        reps: "45s"
+  - kind: single
+    exercises:
+      - exercise: dumbbell-romanian-deadlift
+        sets: 3
+        reps: "10"
+        load_note: "25 lb DBs"
+        rest_seconds: 90

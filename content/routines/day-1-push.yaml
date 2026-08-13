@@ -1,0 +1,38 @@
+slug: day-1-push
+name: "Day 1 — Push"
+description: Squat pattern plus a chest/back superset to finish.
+goal: lean muscle
+day_label: "Day 1 — Push"
+estimated_minutes: 45
+blocks:
+  - kind: single
+    exercises:
+      - exercise: goblet-squat
+        sets: 4
+        reps: "8-10"
+        load_note: "25 lb DB"
+        rest_seconds: 90
+  - kind: single
+    exercises:
+      - exercise: dumbbell-overhead-press
+        sets: 3
+        reps: "8-10"
+        load_note: "15 lb DBs"
+        rest_seconds: 75
+  - kind: superset
+    rounds: 3
+    rest_after_seconds: 120
+    exercises:
+      - exercise: dumbbell-floor-press
+        reps: "10"
+        load_note: "25 lb DBs"
+      - exercise: bent-over-row
+        reps: "10"
+        load_note: "25 lb DBs"
+  - kind: single
+    exercises:
+      - exercise: dumbbell-lateral-raise
+        sets: 3
+        reps: "12-15"
+        load_note: "15 lb DBs"
+        rest_seconds: 60

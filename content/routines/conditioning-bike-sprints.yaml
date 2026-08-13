@@ -1,0 +1,21 @@
+slug: conditioning-bike-sprints
+name: "Conditioning — Bike + Sprints"
+description: Bike intervals followed by a backyard sprint/jump circuit.
+goal: conditioning
+day_label: "Conditioning Day"
+estimated_minutes: 30
+blocks:
+  - kind: single
+    notes: "5 rounds: 1 min hard, 1 min easy"
+    exercises:
+      - exercise: stationary-bike-intervals
+        sets: 5
+        reps: "1 min on / 1 min off"
+  - kind: circuit
+    rounds: 3
+    rest_after_seconds: 120
+    exercises:
+      - exercise: sprint-intervals
+        reps: "100m"
+      - exercise: broad-jump
+        reps: "5"

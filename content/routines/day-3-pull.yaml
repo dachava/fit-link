@@ -1,0 +1,30 @@
+slug: day-3-pull
+name: "Day 3 — Pull"
+description: Back-focused pull day with an arm superset finisher.
+goal: lean muscle
+day_label: "Day 3 — Pull"
+estimated_minutes: 40
+blocks:
+  - kind: single
+    exercises:
+      - exercise: bent-over-row
+        sets: 4
+        reps: "8-10"
+        load_note: "25 lb DBs"
+        rest_seconds: 90
+  - kind: superset
+    rounds: 3
+    rest_after_seconds: 90
+    exercises:
+      - exercise: dumbbell-biceps-curl
+        reps: "12"
+        load_note: "15 lb DBs"
+      - exercise: dumbbell-lateral-raise
+        reps: "12-15"
+        load_note: "15 lb DBs"
+  - kind: single
+    exercises:
+      - exercise: plank
+        sets: 3
+        reps: "45s"
+        rest_seconds: 45
