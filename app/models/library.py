@@ -64,7 +64,9 @@ class RoutineBlock(Base):
     __table_args__ = (UniqueConstraint("routine_id", "order", name="uq_routine_block_order"),)
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    routine_id: Mapped[int] = mapped_column(ForeignKey("routines.id"), nullable=False, index=True)
+    routine_id: Mapped[int] = mapped_column(
+        ForeignKey("routines.id", ondelete="CASCADE"), nullable=False, index=True
+    )
     order: Mapped[int] = mapped_column(Integer, nullable=False)
 
     kind: Mapped[BlockKind] = mapped_column(Enum(BlockKind, name="block_kind"), nullable=False)
@@ -85,7 +87,9 @@ class BlockExercise(Base):
     __table_args__ = (UniqueConstraint("block_id", "order", name="uq_block_exercise_order"),)
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    block_id: Mapped[int] = mapped_column(ForeignKey("routine_blocks.id"), nullable=False, index=True)
+    block_id: Mapped[int] = mapped_column(
+        ForeignKey("routine_blocks.id", ondelete="CASCADE"), nullable=False, index=True
+    )
     order: Mapped[int] = mapped_column(Integer, nullable=False)
     exercise_id: Mapped[int] = mapped_column(ForeignKey("library_exercises.id"), nullable=False, index=True)
 

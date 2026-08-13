@@ -60,7 +60,7 @@ def upgrade() -> None:
     sa.Column('rounds', sa.Integer(), nullable=True),
     sa.Column('rest_after_seconds', sa.Integer(), nullable=True),
     sa.Column('notes', sa.Text(), nullable=True),
-    sa.ForeignKeyConstraint(['routine_id'], ['routines.id'], ),
+    sa.ForeignKeyConstraint(['routine_id'], ['routines.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('routine_id', 'order', name='uq_routine_block_order')
     )
@@ -76,7 +76,7 @@ def upgrade() -> None:
     sa.Column('tempo', sa.String(length=50), nullable=True),
     sa.Column('rest_seconds', sa.Integer(), nullable=True),
     sa.Column('notes', sa.Text(), nullable=True),
-    sa.ForeignKeyConstraint(['block_id'], ['routine_blocks.id'], ),
+    sa.ForeignKeyConstraint(['block_id'], ['routine_blocks.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['exercise_id'], ['library_exercises.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('block_id', 'order', name='uq_block_exercise_order')
