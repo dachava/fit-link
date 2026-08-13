@@ -1,10 +1,14 @@
 # app/main.py
 from contextlib import asynccontextmanager
+from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth, workouts, exercises
+from fastapi.staticfiles import StaticFiles
+from app.routers import auth, workouts, exercises, pages
 from app.dependencies import engine
 from app.database import Base
+
+STATIC_DIR = Path(__file__).resolve().parent / "static"
 
 
 @asynccontextmanager
@@ -30,9 +34,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
 app.include_router(auth.router)
 app.include_router(workouts.router)
 app.include_router(exercises.router)
+app.include_router(pages.router)
 
 
 @app.get("/health")

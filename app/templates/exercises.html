@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Exercises — fit-link{% endblock %}
+{% block content %}
+
+<form class="filter-bar"
+      action="/exercises" method="get"
+      hx-get="/exercises"
+      hx-target="#exercise-list"
+      hx-trigger="input changed delay:400ms, change, submit"
+      hx-push-url="true">
+  <input type="search" name="q" value="{{ q }}" placeholder="Search exercises..." autocomplete="off">
+  <div class="filter-row">
+    <select name="muscle">
+      <option value="">All muscles</option>
+      {% for m in muscles %}
+        <option value="{{ m }}" {% if m == muscle %}selected{% endif %}>{{ m }}</option>
+      {% endfor %}
+    </select>
+    {% for eq in equipment_options %}
+      <label class="equipment-toggle">
+        <input type="checkbox" name="equipment" value="{{ eq }}" {% if eq in equipment %}checked{% endif %}>
+        {{ eq }}
+      </label>
+    {% endfor %}
+  </div>
+</form>
+
+<div id="exercise-list">
+  {% include "_exercise_list.html" %}
+</div>
+
+{% endblock %}

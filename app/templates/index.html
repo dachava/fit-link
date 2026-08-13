@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}fit-link — Routines{% endblock %}
+{% block content %}
+
+{% if not groups %}
+  <p class="empty-state">No routines loaded yet.</p>
+{% endif %}
+
+{% for goal, routines in groups %}
+  <section class="goal-group">
+    <h2>{{ goal }}</h2>
+    {% for routine in routines %}
+      <a class="card" href="/routines/{{ routine.slug }}">
+        <div class="card-title">{{ routine.day_label or routine.name }}</div>
+        <div class="card-meta">
+          {{ routine.name }}
+          {% if routine.estimated_minutes %} · {{ routine.estimated_minutes }} min{% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </section>
+{% endfor %}
+
+{% endblock %}

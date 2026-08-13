@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ exercise.name }} — fit-link{% endblock %}
+{% block content %}
+
+<a class="back-link" href="/exercises">&larr; Exercises</a>
+
+<div class="exercise-detail">
+  <h1>{{ exercise.name }}</h1>
+
+  <div class="chips">
+    <span class="chip accent">{{ exercise.primary_muscle }}</span>
+    {% for m in exercise.secondary_muscles %}<span class="chip">{{ m }}</span>{% endfor %}
+    {% for eq in exercise.equipment %}<span class="chip">{{ eq }}</span>{% endfor %}
+    <span class="chip">{{ exercise.category }}</span>
+  </div>
+
+  {% if exercise.cues %}
+    <h2>Cues</h2>
+    <ul>
+      {% for cue in exercise.cues %}<li>{{ cue }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+
+  <h2>Setup</h2>
+  <div class="markdown-body">{{ setup_html | safe }}</div>
+
+  <h2>Execution</h2>
+  <div class="markdown-body">{{ execution_html | safe }}</div>
+
+  {% if exercise.common_faults %}
+    <div class="faults">
+      <h2>Common Faults</h2>
+      <ul>
+        {% for fault in exercise.common_faults %}<li>{{ fault }}</li>{% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

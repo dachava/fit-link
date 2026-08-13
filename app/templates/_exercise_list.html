@@ -1,0 +1,12 @@
+{% if not exercises %}
+  <p class="empty-state">No exercises match that filter.</p>
+{% endif %}
+{% for ex in exercises %}
+  <a class="card" href="/exercises/{{ ex.slug }}">
+    <div class="card-title">{{ ex.name }}</div>
+    <div class="card-meta">{{ ex.primary_muscle }} · {{ ex.category }}</div>
+    <div class="chips">
+      {% for eq in ex.equipment %}<span class="chip">{{ eq }}</span>{% endfor %}
+    </div>
+  </a>
+{% endfor %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ routine.name }} — fit-link{% endblock %}
+{% block content %}
+
+<a class="back-link" href="/">&larr; Routines</a>
+
+<h1>{{ routine.day_label or routine.name }}</h1>
+{% if routine.day_label and routine.day_label != routine.name %}
+  <p class="card-meta">{{ routine.name }}</p>
+{% endif %}
+{% if routine.description %}<p>{{ routine.description }}</p>{% endif %}
+
+<div class="chips">
+  <span class="chip">{{ routine.goal }}</span>
+  {% if routine.estimated_minutes %}<span class="chip">~{{ routine.estimated_minutes }} min</span>{% endif %}
+</div>
+
+{% for block in routine.blocks %}
+  <div class="block block-{{ block.kind.value }}">
+    {% if block.kind.value == "superset" %}
+      <div class="block-header">Superset{% if block.rounds %} · {{ block.rounds }} rounds{% endif %}</div>
+    {% elif block.kind.value == "circuit" %}
+      <div class="block-header">Circuit{% if block.rounds %} · {{ block.rounds }} rounds{% endif %}</div>
+    {% endif %}
+
+    {% if block.notes %}<p class="block-notes">{{ block.notes }}</p>{% endif %}
+
+    {% for be in block.exercises %}
+      <div class="block-exercise">
+        <a class="exercise-name" href="/exercises/{{ be.exercise.slug }}">{{ be.exercise.name }}</a>
+        <div class="exercise-prescription">
+          {% if be.sets %}<span><strong>{{ be.sets }}</strong> sets</span>{% endif %}
+          <span><strong>{{ be.reps }}</strong> reps</span>
+          {% if be.load_note %}<span>{{ be.load_note }}</span>{% endif %}
+          {% if be.tempo %}<span>tempo {{ be.tempo }}</span>{% endif %}
+          {% if be.rest_seconds %}<span>rest {{ be.rest_seconds }}s</span>{% endif %}
+        </div>
+        {% if be.notes %}<p class="card-meta">{{ be.notes }}</p>{% endif %}
+      </div>
+    {% endfor %}
+
+    {% if block.rest_after_seconds %}
+      <p class="block-notes">Rest {{ block.rest_after_seconds }}s after{% if block.kind.value != "single" %} each round{% endif %}.</p>
+    {% endif %}
+  </div>
+{% endfor %}
+
+{% endblock %}
