@@ -12,6 +12,14 @@ class Settings(BaseSettings): # These become env variables
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
+    # Deploy-only: not read by the app itself. Declared so the single shared .env
+    # (also used by docker-compose for the postgres/cloudflared services) doesn't
+    # trip extra_forbidden below.
+    postgres_user: str = ""
+    postgres_password: str = ""
+    postgres_db: str = ""
+    cloudflare_tunnel_token: str = ""
+
     class Config:
         env_file = ".env"
         case_sensitive = False
