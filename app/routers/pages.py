@@ -27,6 +27,22 @@ async def manifest():
     return FileResponse(STATIC_DIR / "manifest.json", media_type="application/manifest+json")
 
 
+@router.get("/sw.js", include_in_schema=False)
+async def service_worker():
+    # Served at root (not /static/js/) so its default scope covers the whole
+    # app — a service worker can only control paths at or below its own URL.
+    return FileResponse(
+        STATIC_DIR / "js" / "sw.js",
+        media_type="text/javascript",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@router.get("/offline", response_class=HTMLResponse, include_in_schema=False)
+async def offline_page(request: Request):
+    return templates.TemplateResponse("offline.html", {"request": request, "active_nav": ""})
+
+
 @router.get("/", response_class=HTMLResponse)
 async def routine_index(request: Request, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Routine).order_by(Routine.goal, Routine.name))
