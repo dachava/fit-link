@@ -12,6 +12,12 @@ class Settings(BaseSettings): # These become env variables
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
+    # Comma-separated browser origins allowed to call /auth and /workouts
+    # cross-origin (e.g. a future separate frontend). Empty by default: the
+    # reference UI is same-origin and needs no CORS entry, and there's no
+    # known external client yet — leave blank until one actually exists.
+    cors_origins: str = ""
+
     # Deploy-only: not read by the app itself. Declared so the single shared .env
     # (also used by docker-compose for the postgres/cloudflared services) doesn't
     # trip extra_forbidden below.

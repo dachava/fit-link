@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.routers import auth, workouts, exercises, pages
-from app.dependencies import engine
+from app.dependencies import engine, settings
 from app.database import Base
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -26,10 +26,18 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Only matters for a browser-based client calling /auth or /workouts from a
+# different origin — the reference UI is same-origin and unaffected either
+# way. No known external client exists yet, so this is empty by default;
+# set CORS_ORIGINS (comma-separated) once one does. allow_credentials is
+# False since auth is a Bearer token, not a cookie — nothing here relies on
+# credentialed cross-origin requests.
+cors_origins = [origin.strip() for origin in settings.cors_origins.split(",") if origin.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],    # tighten this to your frontend domain in production
-    allow_credentials=True,
+    allow_origins=cors_origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
